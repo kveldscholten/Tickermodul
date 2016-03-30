@@ -1,7 +1,7 @@
 # Ticker
 Tickermodul für ilch 2
 
-Dieses Modul gibt Ihnen die Möglichkeit Ihren Besuchern in einer Tickerbox kurze Nachrichten mit Verlinkungenm zu posten.
+Dieses Modul gibt Ihnen die Möglichkeit Ihren Besuchern in einer Tickerbox kurze Nachrichten mit Verlinkungen zu posten.
 
 Das Modul enthält:
 - eine Content Slide Box welche die letzten 10 einträge anzeigt
