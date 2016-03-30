@@ -6,8 +6,8 @@ Dieses Modul gibt Ihnen die Möglichkeit Ihren Besuchern in einer Tickerbox kurze
 Das Modul enthält:
 - eine Content Slide Box welche die letzten 10 einträge anzeigt
 
-![ScreenShot](https://raw.github.com/kveldscholten/Tickermodul/master/tickerbox.jpg)
-![ScreenShot](https://raw.github.com/kveldscholten/Tickermodul/master/tickercontent.jpg)
+![ScreenShot](https://raw.github.com/kveldscholten/Tickermodul/master/tickerbox.png)
+![ScreenShot](https://raw.github.com/kveldscholten/Tickermodul/master/tickercontent.png)
 
 ## Entwickelt
 Veldscholten, Kevin
