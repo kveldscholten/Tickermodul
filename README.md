@@ -1,10 +1,10 @@
 # Ticker
-Tickermodul für ilch 2
+Tickermodul fÃ¼r ilch 2
 
-Dieses Modul gibt Ihnen die Möglichkeit Ihren Besuchern in einer Tickerbox kurze Nachrichten mit Verlinkungenm zu posten.
+Dieses Modul gibt Ihnen die MÃ¶glichkeit Ihren Besuchern in einer Tickerbox kurze Nachrichten mit Verlinkungenm zu posten.
 
-Das Modul enthält:
-- eine Content Slide Box welche die letzten 10 einträge anzeigt
+Das Modul enthÃ¤lt:
+- eine Content Slide Box welche die letzten 10 eintrÃ¤ge anzeigt
 
 ![ScreenShot](https://raw.github.com/kveldscholten/Tickermodul/master/tickerbox.png)
 ![ScreenShot](https://raw.github.com/kveldscholten/Tickermodul/master/tickercontent.png)
@@ -17,7 +17,7 @@ alle Dateien im Ordner upload, in ihrer Ordnerstrucktur hochladen
 
 Nach Uploaden aller Datein muss das Modul im Backend bei der Module Ãœbersicht unter Nicht installierte Module installiert werden.
 
-Anschließend muss das Modul entsprechend im Menü verlinkt bzw im Content eingebunden werden.
+AnschlieÃŸend muss das Modul entsprechend im MenÃ¼ verlinkt bzw im Content eingebunden werden.
 
 ## Haftungsausschluss:
-Ich Übernehme keine Haftung für Schäden, die durch dieses Skript entstehen. Benutzung ausschließlich AUF EIGENE GEFAHR.
+Ich Ãœbernehme keine Haftung fÃ¼r SchÃ¤den, die durch dieses Skript entstehen. Benutzung ausschlieÃŸlich AUF EIGENE GEFAHR.
