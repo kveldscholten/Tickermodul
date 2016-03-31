@@ -55,7 +55,7 @@ class Config extends \Ilch\Config\Install
                   `title` VARCHAR(255) NOT NULL,
                   `text` MEDIUMTEXT NOT NULL,
                   `link` VARCHAR(255) NOT NULL,
-                  `dateTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  `dateTime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                   PRIMARY KEY (`id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;';
     }
