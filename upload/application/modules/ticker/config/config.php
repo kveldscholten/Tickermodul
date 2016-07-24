@@ -8,25 +8,21 @@ namespace Modules\Ticker\Config;
 
 class Config extends \Ilch\Config\Install
 {
-    public $config = array
-    (
+    public $config = [
         'key' => 'ticker',
         'author' => 'Veldscholten, Kevin',
-        'icon_small' => 'ticker.png',
-        'languages' => array
-        (
-            'de_DE' => array
-            (
+        'icon_small' => 'fa-align-left',
+        'languages' => [
+            'de_DE' => [
                 'name' => 'Ticker',
                 'description' => 'Hier kann der Ticker der Seite verwaltet werden.',
-            ),
-            'en_EN' => array
-            (
+            ],
+            'en_EN' => [
                 'name' => 'Ticker',
                 'description' => 'Here you can manage ticker from your Site.',
-            ),
-        )
-    );
+            ],
+        ]
+    ];
 
     public function install()
     {
@@ -58,5 +54,10 @@ class Config extends \Ilch\Config\Install
                   `dateTime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                   PRIMARY KEY (`id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;';
+    }
+
+    public function getUpdate()
+    {
+
     }
 }

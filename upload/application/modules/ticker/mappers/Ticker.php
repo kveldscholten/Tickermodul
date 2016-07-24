@@ -21,14 +21,14 @@ class Ticker extends \Ilch\Mapper
         if ($limit != null) {
             $entryArray = $this->db()->select('*')
                 ->from('ticker')
-                ->order(array('id' => 'DESC'))
+                ->order(['id' => 'DESC'])
                 ->limit($limit)
                 ->execute()
-                ->fetchRows();
+                ->fetchRows();            
         } else {
             $entryArray = $this->db()->select('*')
                 ->from('ticker')
-                ->order(array('id' => 'DESC'))
+                ->order(['id' => 'DESC'])
                 ->execute()
                 ->fetchRows();
         }
@@ -37,8 +37,7 @@ class Ticker extends \Ilch\Mapper
             return null;
         }
 
-        $entry = array();
-
+        $entry = [];
         foreach ($entryArray as $entries) {
             $entryModel = new TickerModel();
             $entryModel->setId($entries['id']);
@@ -62,7 +61,7 @@ class Ticker extends \Ilch\Mapper
     {
         $entryRow = $this->db()->select('*')
             ->from('ticker')
-            ->where(array('id' => $id))
+            ->where(['id' => $id])
             ->execute()
             ->fetchAssoc();
 
@@ -96,7 +95,7 @@ class Ticker extends \Ilch\Mapper
         if ($ticker->getId()) {
             $this->db()->update('ticker')
                 ->values($fields)
-                ->where(array('id' => $ticker->getId()))
+                ->where(['id' => $ticker->getId()])
                 ->execute();
         } else {
             $this->db()->insert('ticker')
@@ -113,7 +112,7 @@ class Ticker extends \Ilch\Mapper
     public function delete($id)
     {
         $this->db()->delete('ticker')
-            ->where(array('id' => $id))
+            ->where(['id' => $id])
             ->execute();
     }
 }

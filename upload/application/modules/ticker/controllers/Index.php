@@ -15,7 +15,7 @@ class Index extends \Ilch\Controller\Frontend
         $tickerMapper = new TickerMapper();
 
         $this->getLayout()->getHmenu()
-                ->add($this->getTranslator()->trans('menuTicker'), array('action' => 'index'));
+                ->add($this->getTranslator()->trans('menuTicker'), ['action' => 'index']);
 
         $this->getView()->set('ticker', $tickerMapper->getTicker());
     }

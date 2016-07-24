@@ -23,8 +23,8 @@
                     <?php foreach ($this->get('ticker') as $ticker): ?>
                         <tr>
                             <td><input value="<?=$ticker->getId() ?>" type="checkbox" name="check_entries[]" /></td>
-                            <td><?=$this->getEditIcon(array('action' => 'treat', 'id' => $ticker->getId())) ?></td>
-                            <td><?=$this->getDeleteIcon(array('action' => 'del', 'id' => $ticker->getId())) ?></td>
+                            <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $ticker->getId()]) ?></td>
+                            <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticker->getId()]) ?></td>
                             <td><?=$ticker->getTitle() ?></td>
                             <td><?=$ticker->getText() ?></td>
                         </tr>
@@ -32,7 +32,7 @@
                 </tbody>
             </table>
         </div>
-        <?=$this->getListBar(array('delete' => 'delete')) ?>
+        <?=$this->getListBar(['delete' => 'delete']) ?>
     </form>
 <?php else: ?>
     <?=$this->getTrans('noTicker') ?>

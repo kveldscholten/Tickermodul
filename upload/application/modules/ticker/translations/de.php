@@ -4,8 +4,7 @@
  * @package ilch
  */
 
-return array
-(
+return [
     'menuTicker' => 'Ticker',
     'boxSettings' => 'Box Einstellungen',
     'title' => 'Titel',
@@ -21,4 +20,4 @@ return array
     'missingText' => 'Text muss ausgefüllt werden',
     'noTicker' => 'Keine Einträge vorhanden',
     'showTicker' => 'Alle ansehen',
-);
+];

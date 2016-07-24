@@ -13,30 +13,26 @@ class Index extends \Ilch\Controller\Admin
 {
     public function init()
     {
-        $items = array
-        (
-            array
-            (
+        $items = [
+            [
                 'name' => 'manage',
                 'active' => false,
                 'icon' => 'fa fa-th-list',
-                'url' => $this->getLayout()->getUrl(array('controller' => 'index', 'action' => 'index'))
-            ),
-            array
-            (
+                'url' => $this->getLayout()->getUrl(['controller' => 'index', 'action' => 'index'])
+            ],
+            [
                 'name' => 'add',
                 'active' => false,
                 'icon' => 'fa fa-plus-circle',
-                'url' => $this->getLayout()->getUrl(array('controller' => 'index', 'action' => 'treat'))
-            ),
-            array
-            (
+                'url' => $this->getLayout()->getUrl(['controller' => 'index', 'action' => 'treat'])
+            ],
+            [
                 'name' => 'settings',
                 'active' => false,
                 'icon' => 'fa fa-cogs',
-                'url' => $this->getLayout()->getUrl(array('controller' => 'settings', 'action' => 'index'))
-            )
-        );  
+                'url' => $this->getLayout()->getUrl(['controller' => 'settings', 'action' => 'index'])
+            ]
+        ];
 
         if ($this->getRequest()->getControllerName() == 'index' AND $this->getRequest()->getActionName() == 'treat') {
             $items[1]['active'] = true;
@@ -58,11 +54,11 @@ class Index extends \Ilch\Controller\Admin
         $tickerMapper = new TickerMapper();
 
         $this->getLayout()->getAdminHmenu()
-                ->add($this->getTranslator()->trans('menuTicker'), array('action' => 'index'));
+                ->add($this->getTranslator()->trans('menuTicker'), ['action' => 'index']);
 
         if ($this->getRequest()->getPost('check_entries')) {
             if ($this->getRequest()->getPost('action') == 'delete') {
-                foreach($this->getRequest()->getPost('check_entries') as $id) {
+                foreach ($this->getRequest()->getPost('check_entries') as $id) {
                     $tickerMapper->delete($id);
                 }
             }
@@ -77,14 +73,14 @@ class Index extends \Ilch\Controller\Admin
 
         if ($this->getRequest()->getParam('id')) {
             $this->getLayout()->getAdminHmenu()
-                    ->add($this->getTranslator()->trans('menuTicker'), array('action' => 'index'))
-                    ->add($this->getTranslator()->trans('edit'), array('action' => 'treat'));
+                    ->add($this->getTranslator()->trans('menuTicker'), ['action' => 'index'])
+                    ->add($this->getTranslator()->trans('edit'), ['action' => 'treat']);
 
             $this->getView()->set('ticker', $tickerMapper->getTickerById($this->getRequest()->getParam('id')));
         } else {
             $this->getLayout()->getAdminHmenu()
-                    ->add($this->getTranslator()->trans('menuTicker'), array('controller' => 'index', 'action' => 'index'))
-                    ->add($this->getTranslator()->trans('add'), array('action' => 'treat'));
+                    ->add($this->getTranslator()->trans('menuTicker'), ['controller' => 'index', 'action' => 'index'])
+                    ->add($this->getTranslator()->trans('add'), ['action' => 'treat']);
         }
 
         if ($this->getRequest()->isPost()) {
@@ -110,7 +106,7 @@ class Index extends \Ilch\Controller\Admin
 
                 $this->addMessage('saveSuccess');
 
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(['action' => 'index']);
             }
         }
     }
@@ -125,6 +121,6 @@ class Index extends \Ilch\Controller\Admin
             $this->addMessage('deleteSuccess');
         }
 
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(['action' => 'index']);
     }
 }
