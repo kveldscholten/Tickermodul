@@ -24,7 +24,7 @@ class Ticker extends \Ilch\Mapper
                 ->order(['id' => 'DESC'])
                 ->limit($limit)
                 ->execute()
-                ->fetchRows();            
+                ->fetchRows();
         } else {
             $entryArray = $this->db()->select('*')
                 ->from('ticker')
