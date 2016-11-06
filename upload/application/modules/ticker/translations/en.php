@@ -13,11 +13,10 @@ return [
     'up' => 'Up',
     'down' => 'Down',
     'tickerDirection' => 'Change direction',
+    'tickerLimit' => 'Limit<br /><small>Displayed items</small>',
     'tickerBoxLimit' => 'Limit<br /><small>Displayed items</small>',
     'tickerSpeed' => 'Speed of transition',
     'tickerInterval' => 'Interval<br /><small>The time for the next transition<br />In milliseconds</small>',
-    'missingTitle' => 'Title was not filled',
-    'missingText' => 'Text was not filled',
     'noTicker' => 'No entries available',
     'showTicker' => 'See all',
 ];

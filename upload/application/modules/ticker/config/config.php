@@ -10,6 +10,7 @@ class Config extends \Ilch\Config\Install
 {
     public $config = [
         'key' => 'ticker',
+        'version' => '1.0',
         'author' => 'Veldscholten, Kevin',
         'icon_small' => 'fa-align-left',
         'languages' => [
@@ -21,7 +22,9 @@ class Config extends \Ilch\Config\Install
                 'name' => 'Ticker',
                 'description' => 'Here you can manage ticker from your Site.',
             ],
-        ]
+        ],
+        'ilchCore' => '2.0.0',
+        'phpVersion' => '5.6'
     ];
 
     public function install()
@@ -32,6 +35,7 @@ class Config extends \Ilch\Config\Install
         $databaseConfig->set('ticker_direction', 'up');
         $databaseConfig->set('ticker_speed', '600');
         $databaseConfig->set('ticker_interval', '4000');
+        $databaseConfig->set('ticker_limit', '10');
         $databaseConfig->set('ticker_box_limit', '2');
     }
 
@@ -41,6 +45,7 @@ class Config extends \Ilch\Config\Install
         $this->db()->queryMulti("DELETE FROM `[prefix]_config` WHERE `key` = 'ticker_direction'");
         $this->db()->queryMulti("DELETE FROM `[prefix]_config` WHERE `key` = 'ticker_speed'");
         $this->db()->queryMulti("DELETE FROM `[prefix]_config` WHERE `key` = 'ticker_interval'");
+        $this->db()->queryMulti("DELETE FROM `[prefix]_config` WHERE `key` = 'ticker_limit'");
         $this->db()->queryMulti("DELETE FROM `[prefix]_config` WHERE `key` = 'ticker_box_limit'");
     }
 

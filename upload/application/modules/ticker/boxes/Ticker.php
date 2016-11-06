@@ -14,7 +14,7 @@ class Ticker extends \Ilch\Box
     {
         $tickerMapper = new TickerMapper();
 
-        $this->getView()->set('ticker', $tickerMapper->getTicker(10));
+        $this->getView()->set('ticker', $tickerMapper->getTicker($this->getConfig()->get('ticker_limit')));
         $this->getView()->set('tickerDirection', $this->getConfig()->get('ticker_direction'));
         $this->getView()->set('tickerSpeed', $this->getConfig()->get('ticker_speed'));
         $this->getView()->set('tickerInterval', $this->getConfig()->get('ticker_interval'));

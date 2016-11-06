@@ -1,9 +1,38 @@
 <link href="<?=$this->getModuleUrl('static/css/ticker.css') ?>" rel="stylesheet">
 
-<legend><?=$this->getTrans('boxSettings') ?></legend>
+<legend><?=$this->getTrans('settings') ?></legend>
+
+<!-- Fehlerausgabe der Validation -->
+<?php if ($this->validation()->hasErrors()): ?>
+    <div class="alert alert-danger" role="alert">
+        <strong> <?=$this->getTrans('errorsOccured') ?>:</strong>
+        <ul>
+            <?php foreach ($this->validation()->getErrorMessages() as $error): ?>
+                <li><?=$error; ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+<!-- Ende Fehlerausgabe der Validation -->
+
 <form class="form-horizontal" method="POST" action="">
     <?=$this->getTokenField() ?>
-    <div class="form-group">
+    <div class="form-group <?=$this->validation()->hasError('ticker_limit') ? 'has-error' : '' ?>">
+        <label for="ticker_box_limit" class="col-lg-2 control-label">
+            <?=$this->getTrans('tickerLimit') ?>
+        </label>
+        <div class="col-lg-1">
+            <input class="form-control"
+                   type="number"
+                   id="ticker_limit"
+                   name="ticker_limit"
+                   min="1"
+                   value="<?=$this->get('ticker_limit') ?>">
+        </div>
+    </div>
+
+    <legend><?=$this->getTrans('boxSettings') ?></legend>
+    <div class="form-group <?=$this->validation()->hasError('ticker_direction') ? 'has-error' : '' ?>">
         <label for="ticker_direction" class="col-lg-2 control-label">
             <?=$this->getTrans('tickerDirection') ?>
         </label>
@@ -17,91 +46,44 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group <?=$this->validation()->hasError('ticker_box_limit') ? 'has-error' : '' ?>">
         <label for="ticker_box_limit" class="col-lg-2 control-label">
             <?=$this->getTrans('tickerBoxLimit') ?>
         </label>
-        <div class="col-lg-2 input-group">
-            <div class="container">
-                <div class="input-group spinner">
-                    <input class="form-control"
-                           type="text"
-                           id="ticker_box_limit"
-                           name="ticker_box_limit"
-                           min="1"
-                           value="<?=$this->get('ticker_box_limit') ?>">
-                    <div class="input-group-btn-vertical">
-                        <span class="btn btn-default"><i class="fa fa-caret-up"></i></span>
-                        <span class="btn btn-default"><i class="fa fa-caret-down"></i></span>
-                    </div>
-                </div>
-            </div>
+        <div class="col-lg-1">
+            <input class="form-control"
+                   type="number"
+                   id="ticker_box_limit"
+                   name="ticker_box_limit"
+                   min="1"
+                   value="<?=$this->get('ticker_box_limit') ?>">
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group <?=$this->validation()->hasError('ticker_speed') ? 'has-error' : '' ?>">
         <label for="ticker_speed" class="col-lg-2 control-label">
             <?=$this->getTrans('tickerSpeed') ?>
         </label>
-        <div class="col-lg-2 input-group">
-            <div class="container">
-                <div class="input-group spinner">
-                    <input class="form-control"
-                           type="text"
-                           id="ticker_speed"
-                           name="ticker_speed"
-                           min="500"
-                           value="<?=$this->get('ticker_speed') ?>">
-                    <div class="input-group-btn-vertical">
-                        <span class="btn btn-default"><i class="fa fa-caret-up"></i></span>
-                        <span class="btn btn-default"><i class="fa fa-caret-down"></i></span>
-                    </div>
-                </div>
-            </div>
+        <div class="col-lg-1">
+            <input class="form-control"
+                   type="number"
+                   id="ticker_speed"
+                   name="ticker_speed"
+                   min="500"
+                   value="<?=$this->get('ticker_speed') ?>">
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group <?=$this->validation()->hasError('ticker_interval') ? 'has-error' : '' ?>">
         <label for="ticker_interval" class="col-lg-2 control-label">
             <?=$this->getTrans('tickerInterval') ?>
         </label>
-        <div class="col-lg-2 input-group">
-            <div class="container">
-                <div class="input-group spinner">
-                    <input class="form-control"
-                           type="text"
-                           id="ticker_interval"
-                           name="ticker_interval"
-                           min="1000"
-                           value="<?=$this->get('ticker_interval') ?>">
-                    <div class="input-group-btn-vertical">
-                        <span class="btn btn-default"><i class="fa fa-caret-up"></i></span>
-                        <span class="btn btn-default"><i class="fa fa-caret-down"></i></span>
-                    </div>
-                </div>
-            </div>
+        <div class="col-lg-1">
+            <input class="form-control"
+                   type="number"
+                   id="ticker_interval"
+                   name="ticker_interval"
+                   min="1000"
+                   value="<?=$this->get('ticker_interval') ?>">
         </div>
     </div>
     <?=$this->getSaveBar()?>
 </form>
-
-<script language="JavaScript" type="text/javascript">
-$(function() {
-    $('.spinner .btn:first-of-type').on('click', function() {
-        var btn = $(this);
-        var input = btn.closest('.spinner').find('input');
-        if (input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max'))) {
-            input.val(parseInt(input.val(), 10) + 1);
-        } else {
-            btn.next("disabled", true);
-        }
-    });
-    $('.spinner .btn:last-of-type').on('click', function() {
-        var btn = $(this);
-        var input = btn.closest('.spinner').find('input');
-        if (input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min'))) {
-            input.val(parseInt(input.val(), 10) - 1);
-        } else {
-            btn.prev("disabled", true);
-        }
-    });
-})
-</script>

@@ -1,6 +1,6 @@
 <?php $ticker_dateNow = new \Ilch\Date(); ?>
 
-<link rel="stylesheet" href="<?=$this->getStaticUrl('../application/modules/ticker/static/css/ticker.css') ?>">
+<link rel="stylesheet" href="<?=$this->getBoxUrl('static/css/ticker.css') ?>">
 
 <div class="row">
     <div class="col-lg-12 ticker-box">
@@ -48,7 +48,7 @@
     </div>
 </div>
 
-<script src="<?=$this->getStaticUrl('../application/modules/ticker/static/js/jquery.easy-ticker.js') ?>"></script>
+<script src="<?=$this->getBoxUrl('static/js/jquery.easy-ticker.js') ?>"></script>
 <script type="text/javascript">
 $('.ticker-body').easyTicker({
     direction: '<?=$this->get('tickerDirection') ?>',

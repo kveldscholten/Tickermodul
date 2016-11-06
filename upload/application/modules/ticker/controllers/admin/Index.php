@@ -8,6 +8,7 @@ namespace Modules\Ticker\Controllers\Admin;
 
 use Modules\Ticker\Mappers\Ticker as TickerMapper;
 use Modules\Ticker\Models\Ticker as TickerModel;
+use Ilch\Validation;
 
 class Index extends \Ilch\Controller\Admin
 {
@@ -18,13 +19,13 @@ class Index extends \Ilch\Controller\Admin
                 'name' => 'manage',
                 'active' => false,
                 'icon' => 'fa fa-th-list',
-                'url' => $this->getLayout()->getUrl(['controller' => 'index', 'action' => 'index'])
-            ],
-            [
-                'name' => 'add',
-                'active' => false,
-                'icon' => 'fa fa-plus-circle',
-                'url' => $this->getLayout()->getUrl(['controller' => 'index', 'action' => 'treat'])
+                'url' => $this->getLayout()->getUrl(['controller' => 'index', 'action' => 'index']),
+                [
+                    'name' => 'add',
+                    'active' => false,
+                    'icon' => 'fa fa-plus-circle',
+                    'url' => $this->getLayout()->getUrl(['controller' => 'index', 'action' => 'treat'])
+                ]
             ],
             [
                 'name' => 'settings',
@@ -34,10 +35,8 @@ class Index extends \Ilch\Controller\Admin
             ]
         ];
 
-        if ($this->getRequest()->getControllerName() == 'index' AND $this->getRequest()->getActionName() == 'treat') {
-            $items[1]['active'] = true;
-        } elseif ($this->getRequest()->getControllerName() == 'settings') {
-            $items[2]['active'] = true;
+        if ($this->getRequest()->getActionName() == 'treat') {
+            $items[0][0]['active'] = true;
         } else {
             $items[0]['active'] = true;
         }
@@ -84,30 +83,31 @@ class Index extends \Ilch\Controller\Admin
         }
 
         if ($this->getRequest()->isPost()) {
-            $tickerModel = new TickerModel();
+            $validation = Validation::create($this->getRequest()->getPost(), [
+                'title' => 'required',
+                'link' => 'url',
+                'text' => 'required'
+            ]);
 
-            if ($this->getRequest()->getParam('id')) {
-                $tickerModel->setId($this->getRequest()->getParam('id'));
+            if ($validation->isValid()) {
+                $model = new TickerModel();
+                if ($this->getRequest()->getParam('id')) {
+                    $model->setId($this->getRequest()->getParam('id'));
+                }
+                $model->setTitle($this->getRequest()->getPost('title'))
+                    ->setLink($this->getRequest()->getPost('link'))
+                    ->setText($this->getRequest()->getPost('text'));
+                $tickerMapper->save($model);
+
+                $this->redirect()
+                    ->withMessage('saveSuccess')
+                    ->to(['action' => 'index']);
             }
 
-            $title = trim($this->getRequest()->getPost('title'));
-            $link = trim($this->getRequest()->getPost('link'));
-            $text = trim($this->getRequest()->getPost('text'));
-
-            if (empty($title)) {
-                $this->addMessage('missingTitle', 'danger');
-            } elseif(empty($text)) {
-                $this->addMessage('missingText', 'danger');
-            } else {
-                $tickerModel->setTitle($title);
-                $tickerModel->setLink($link);
-                $tickerModel->setText($text);
-                $tickerMapper->save($tickerModel);
-
-                $this->addMessage('saveSuccess');
-
-                $this->redirect(['action' => 'index']);
-            }
+            $this->redirect()
+                ->withInput()
+                ->withErrors($validation->getErrorBag())
+                ->to(['action' => 'treat']);
         }
     }
 

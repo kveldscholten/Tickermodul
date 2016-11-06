@@ -13,11 +13,10 @@ return [
     'up' => 'Aufwärts',
     'down' => 'Abwärts',
     'tickerDirection' => 'Wechsel Richtung',
+    'tickerLimit' => 'Limit<br /><small>Anzahl angezeigter Einträge</small>',
     'tickerBoxLimit' => 'Limit<br /><small>Anzahl angezeigter Einträge</small>',
     'tickerSpeed' => 'Geschwindigkeit des Übergangs',
     'tickerInterval' => 'Zeitabstand<br /><small>Die Zeit bis zum nächsten Übergang<br />Angabe in Millisekunden</small>',
-    'missingTitle' => 'Titel muss ausgefüllt werden',
-    'missingText' => 'Text muss ausgefüllt werden',
     'noTicker' => 'Keine Einträge vorhanden',
     'showTicker' => 'Alle ansehen',
 ];
