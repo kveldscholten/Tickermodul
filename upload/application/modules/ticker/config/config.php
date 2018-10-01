@@ -10,7 +10,7 @@ class Config extends \Ilch\Config\Install
 {
     public $config = [
         'key' => 'ticker',
-        'version' => '1.0',
+        'version' => '1.1',
         'author' => 'Veldscholten, Kevin',
         'icon_small' => 'fa-align-left',
         'languages' => [
@@ -23,7 +23,7 @@ class Config extends \Ilch\Config\Install
                 'description' => 'Here you can manage ticker from your Site.',
             ],
         ],
-        'ilchCore' => '2.0.0',
+        'ilchCore' => '2.1.15',
         'phpVersion' => '5.6'
     ];
 
@@ -58,11 +58,15 @@ class Config extends \Ilch\Config\Install
                   `link` VARCHAR(255) NOT NULL,
                   `dateTime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                   PRIMARY KEY (`id`)
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;';
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;';
     }
 
-    public function getUpdate()
+    public function getUpdate($installedVersion)
     {
-
+        switch ($installedVersion) {
+            case "1.0":
+                // Convert tables to new character set and collate
+                $this->db()->query('ALTER TABLE `[prefix]_ticker` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;');
+        }
     }
 }
